@@ -38,9 +38,19 @@ function beautifulText(self) {
   });
 }
 
+function onKeyup(event) {
+  var input = $(this);
+  var timeout = input.data('timeout');
+  clearTimeout(timeout);
+  timeout = setTimeout(beautiful_it.bind(input), 800);
+  input.data('timeout', timeout);
+}
+
+function beautiful_it() {
+  var input = $(this);
+  beautifulText(input[0]);
+}
+
 $(document).ready(function() {
-  $('form').on('submit', function(e){
-    e.preventDefault();
-    beautifulText(this);
-  });
+  $(document).on('keyup','#beautiful_it', onKeyup);
 });
