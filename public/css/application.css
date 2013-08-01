@@ -1,7 +1,20 @@
 .container {
   margin: 20px auto;
-  width: 600px;
+  width: 960px;
   padding: 0px 20px 20px 20px;
+  text-align: center;
+}
+
+.element {
+  margin-top: 20px;
+  display: inline-block;
+  width: 45%;
+  vertical-align:top;
+}
+
+#converted-text,
+#changes {
+  text-align: left;
 }
 
 span {
