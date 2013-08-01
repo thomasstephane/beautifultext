@@ -1,25 +1,31 @@
 function updateText(response) {
   $('#converted-text').html(decorate(response));
-  $('#changes').html(createList(response.changes));
+  $('#changes').html(createList(response));
 }
 
-function createList(changes) {
+function createList(response) {
   var list = "<ul>";
-  $.each(changes, function(index, change){
-    list = list + ("<li>Space added at position <span>" + change + "</span></li>");
-  })
+  list = createSublist(response.spaces_added, "Space added at position", list);
+  list = createSublist(response.spaces_removed, "Space removed at position", list);
   list = list + "</ul>";
+  return list
+}
+
+function createSublist(changes, text, list) {
+  $.each(changes, function(index, change){
+    list = list + ("<li>" + text + " <span>" + change + "</span></li>");
+  })
   return list
 }
 
 function decorate(response) {
   var letters = response.beautiful_text;
   $.each(letters, function(i,letter) {
-    if ($.inArray(i, response.changes) !== -1) {
+    if ($.inArray(i, response.spaces_added) !== -1) {
       letters[i] = "<span>" + letter + "</span>"
     }
   });
-  return letters.join("");
+  return letters.join('');
 }
 
 function beautifulText(self) {
