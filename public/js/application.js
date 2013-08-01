@@ -1,12 +1,20 @@
+function updateText(text) {
+  $('#converted-text').html(text);
+}
+
+function beautifulText(self) {
+  $.ajax({
+    type: 'post',
+    url: '/beautiful',
+    data: $(self).serialize()
+  }).done(function(response){
+    updateText(response.beautiful_text);
+  });
+}
+
 $(document).ready(function() {
   $('form').on('submit', function(e){
     e.preventDefault();
-    $.ajax({
-      type: 'post',
-      url: '/beautiful',
-      data: $(this).serialize()
-    }).done(function(response){
-      $('#converted-text').html(response.beautiful_text);
-    });
+    beautifulText(this);
   });
 });
