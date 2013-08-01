@@ -6,7 +6,7 @@ $(document).ready(function() {
       url: '/beautiful',
       data: $(this).serialize()
     }).done(function(response){
-      console.log(response.beautiful_text);
+      $('#converted-text').html(response.beautiful_text);
     });
   });
 });
