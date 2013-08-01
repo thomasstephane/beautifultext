@@ -10,7 +10,7 @@ helpers do
       if l == "." && i != letters.length - 1
         if letters[i+1] != " " && letters[i+1] != "."
           letters.insert(i + 1, " ")
-          result[:changes] << "Added a space in position #{i + 1}"
+          result[:changes] << (i + 1)
         end
       end
     end
