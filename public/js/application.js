@@ -1,6 +1,15 @@
 function updateText(response) {
   $('#converted-text').html(response.beautiful_text);
-  $('#changes').html(response.changes);
+  $('#changes').html(createList(response.changes));
+}
+
+function createList(changes) {
+  var list = "<ul>";
+  $.each(changes, function(index, change){
+    list = list + ("<li>" + change + "</li>");
+  })
+  list = list + "</ul>";
+  return list
 }
 
 function beautifulText(self) {
