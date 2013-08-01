@@ -1,5 +1,6 @@
-function updateText(text) {
-  $('#converted-text').html(text);
+function updateText(response) {
+  $('#converted-text').html(response.beautiful_text);
+  $('#changes').html(response.changes);
 }
 
 function beautifulText(self) {
@@ -8,7 +9,7 @@ function beautifulText(self) {
     url: '/beautiful',
     data: $(self).serialize()
   }).done(function(response){
-    updateText(response.beautiful_text);
+    updateText(response);
   });
 }
 
